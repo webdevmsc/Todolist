@@ -2,8 +2,8 @@
 {
     public enum TodoItemStatus
     {
-        Done,
         InProgress,
+        Done,
         New
     }
 }

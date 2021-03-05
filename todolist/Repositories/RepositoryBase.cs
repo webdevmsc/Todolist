@@ -34,10 +34,8 @@ namespace todolist.Repositories
             {
                 return model.Id;
             }
-            else
-            {
-                throw new BusinessException("Failed to add new item");
-            }
+            throw new BusinessException("Failed to add new item");
+
         }
 
         public async Task<int> Delete(string id, CancellationToken cancellationToken)
@@ -62,6 +60,11 @@ namespace todolist.Repositories
         public async Task<List<T>> GetAllByFilter(Expression<Func<T, bool>> filterDefinition)
         {
             return await _dbSet.Where(filterDefinition).Where(x => x.IsDeleted != true).ToListAsync();
+        }
+
+        public async Task<T> GetById(string id)
+        {
+            return await _dbSet.SingleOrDefaultAsync(x => x.Id == id);
         }
     }
 }

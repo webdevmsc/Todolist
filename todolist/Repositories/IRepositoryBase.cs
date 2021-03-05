@@ -13,5 +13,6 @@ namespace todolist.Repositories
         Task<int> Delete(string id, CancellationToken cancellationToken);
         Task<int> Update(T model, CancellationToken cancellationToken);
         Task<List<T>> GetAllByFilter(Expression<Func<T, bool>> filterDefinition);
+        Task<T> GetById(string id);
     }
 }

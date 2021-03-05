@@ -6,7 +6,7 @@ namespace todolist.Models.Todo
 {
     public class TodoItem : ModelBase
     {
-        public TodoItem(string title, string content, string userId)
+        public TodoItem(string title, string content, List<string> tags, string userId)
         {
             if (title.Length > 30)
             {
@@ -18,12 +18,12 @@ namespace todolist.Models.Todo
             UserId = userId;
             Status = TodoItemStatus.InProgress;
             Added = DateTime.Now;
+            Updated = Added;
             // Tags = new List<TodoItemTag>();
-            Tags = new List<string>();
-            SetUpdated();
+            Tags = tags;
         }
-        public string Title { get; }
-        public string Content { get; }
+        public string Title { get; private set; }
+        public string Content { get; private set; }
         public string UserId { get; }
         public TodoItemStatus Status { get; private set; }
         public DateTime Added { get; }
@@ -55,6 +55,16 @@ namespace todolist.Models.Todo
         public void ToggleDone()
         {
             Status = Status == TodoItemStatus.Done ? TodoItemStatus.InProgress : TodoItemStatus.Done;
+            SetUpdated();
+        }
+
+        public void Update(string title, string content, TodoItemStatus status, List<string> tags)
+        {
+            Title = title;
+            Content = content;
+            Status = status;
+            Tags = tags;
+            SetUpdated();
         }
     }
 }

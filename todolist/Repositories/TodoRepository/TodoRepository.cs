@@ -1,4 +1,6 @@
-﻿using todolist.Database;
+﻿using System;
+using System.Threading.Tasks;
+using todolist.Database;
 using todolist.Models.Todo;
 
 namespace todolist.Repositories.TodoRepository
@@ -7,6 +9,7 @@ namespace todolist.Repositories.TodoRepository
     {
         public TodoRepository(ApplicationDbContext db) : base(db)
         {
+            
         }
     }
 }
