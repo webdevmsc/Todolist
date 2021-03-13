@@ -17,7 +17,7 @@ namespace todolist.Models.Todo
             Content = content;
             UserId = userId;
             Status = TodoItemStatus.InProgress;
-            Added = DateTime.UtcNow.ToString("o");
+            Added = DateTime.UtcNow;
             Updated = Added;
             Tags = tags;
         }
@@ -25,8 +25,8 @@ namespace todolist.Models.Todo
         public string Content { get; private set; }
         public string UserId { get; }
         public TodoItemStatus Status { get; set; }
-        public string Added { get; }
-        public string Updated { get; private set; }
+        public DateTime Added { get; }
+        public DateTime Updated { get; private set; }
         public List<string> Tags { get; private set; }
 
         public void AddTag(string tag)
@@ -37,7 +37,7 @@ namespace todolist.Models.Todo
 
         public void SetUpdated()
         {
-            Updated = DateTime.UtcNow.ToString("o");
+            Updated = DateTime.UtcNow;
         }
 
         public void Update(string title, string content, TodoItemStatus status, List<string> tags)

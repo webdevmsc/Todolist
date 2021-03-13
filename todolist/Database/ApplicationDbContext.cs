@@ -16,12 +16,11 @@ namespace todolist.Database
         }
         public DbSet<TodoItem> TodoItems { get; set; }
 
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<TodoItem>(x =>
             {
-                x.Property(y => y.Added);
+                x.Property(y => y.Added).HasConversion(v => v, v => DateTime.SpecifyKind(v, DateTimeKind.Utc));
                 x.Property(y => y.Title);
                 x.Property(y => y.Content);
                 x.Property(y => y.UserId);
