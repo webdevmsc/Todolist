@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using todolist.Database;
+﻿using todolist.Database;
 using todolist.Models.Todo;
 
 namespace todolist.Repositories.TodoRepository

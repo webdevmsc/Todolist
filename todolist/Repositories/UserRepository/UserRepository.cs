@@ -13,8 +13,8 @@ namespace todolist.Repositories.UserRepository
 {
     public class UserRepository : IUserRepository
     {
-        private UserManager<IdentityUser> _userManager;
-        private IConfiguration _configuration;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly IConfiguration _configuration;
 
         public UserRepository(UserManager<IdentityUser> userManager, IConfiguration configuration)
         {
@@ -31,7 +31,7 @@ namespace todolist.Repositories.UserRepository
                 return true;
             }
 
-            throw new AccountException("Failed to register user");
+            throw new AccountException(result.Errors, "Failed to register new user");
         }
 
         public async Task<string> LoginUserAsync(LoginViewModel model)
@@ -61,7 +61,7 @@ namespace todolist.Repositories.UserRepository
                 claims,
                 expires: DateTime.Now.AddHours(3),
                 signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256));
-            string tokenAsString = new JwtSecurityTokenHandler().WriteToken(token);
+            var tokenAsString = new JwtSecurityTokenHandler().WriteToken(token);
             return tokenAsString;
         }
 

@@ -2,10 +2,10 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using todolist.Features.TodoFeatures.AddNewTodoItem;
-using todolist.Features.TodoFeatures.GetAll;
+using todolist.Features.TodoFeatures.DeleteTodoItem;
+using todolist.Features.TodoFeatures.GetAllTodoItems;
 using todolist.Features.TodoFeatures.ToggleDone;
 using todolist.Features.TodoFeatures.UpdateTodoItem;
-using todolist.Models.Todo;
 
 namespace todolist.Controllers
 {

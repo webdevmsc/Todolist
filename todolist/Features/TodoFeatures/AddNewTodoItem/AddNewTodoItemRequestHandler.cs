@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 using todolist.Models.Todo;
 using todolist.Repositories.TodoRepository;
 using todolist.Repositories.UserRepository;

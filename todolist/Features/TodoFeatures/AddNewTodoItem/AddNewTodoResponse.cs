@@ -5,7 +5,7 @@ namespace todolist.Features.TodoFeatures.AddNewTodoItem
 {
     public class AddNewTodoItemResponse : ResponseBaseModel<AddedTodo>
     {
-        public static AddNewTodoItemResponse GetSuccess(string id, DateTime added) => new AddNewTodoItemResponse()
+        public static AddNewTodoItemResponse GetSuccess(string id, string added) => new AddNewTodoItemResponse()
         {
             Status = ResponseStatus.Success,
             Data = new AddedTodo() { Id = id, Added = added },
@@ -16,6 +16,6 @@ namespace todolist.Features.TodoFeatures.AddNewTodoItem
     public class AddedTodo
     {
         public string Id { get; set; }
-        public DateTime Added { get; set; }
+        public string Added { get; set; }
     }
 }

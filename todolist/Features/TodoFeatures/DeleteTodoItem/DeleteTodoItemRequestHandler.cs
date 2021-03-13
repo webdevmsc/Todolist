@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using MediatR;
 using todolist.Repositories.TodoRepository;
 
-namespace todolist.Features.TodoFeatures.AddNewTodoItem
+namespace todolist.Features.TodoFeatures.DeleteTodoItem
 {
     public class DeleteTodoItemRequestHandler : IRequestHandler<DeleteTodoItemRequest, DeleteTodoItemResponse>
     {

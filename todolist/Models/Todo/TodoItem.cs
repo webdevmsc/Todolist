@@ -10,25 +10,23 @@ namespace todolist.Models.Todo
         {
             if (title.Length > 30)
             {
-                throw new BusinessException("Name should be less than 10 symbols");
+                throw new BusinessException("Name should be less than 30 symbols");
             }
 
             Title = title;
             Content = content;
             UserId = userId;
             Status = TodoItemStatus.InProgress;
-            Added = DateTime.Now;
+            Added = DateTime.UtcNow.ToString("o");
             Updated = Added;
-            // Tags = new List<TodoItemTag>();
             Tags = tags;
         }
         public string Title { get; private set; }
         public string Content { get; private set; }
         public string UserId { get; }
-        public TodoItemStatus Status { get; private set; }
-        public DateTime Added { get; }
-        public DateTime Updated { get; private set; }
-        // public List<TodoItemTag> Tags { get; }
+        public TodoItemStatus Status { get; set; }
+        public string Added { get; }
+        public string Updated { get; private set; }
         public List<string> Tags { get; private set; }
 
         public void AddTag(string tag)
@@ -37,25 +35,9 @@ namespace todolist.Models.Todo
             SetUpdated();
         }
 
-        private void SetUpdated()
+        public void SetUpdated()
         {
-            Updated = DateTime.Now;
-        }
-
-        public void SetTodoInProgress()
-        {
-            Status = TodoItemStatus.InProgress;
-        }
-
-        public void SetTodoDone()
-        {
-            Status = TodoItemStatus.Done;
-        }
-
-        public void ToggleDone()
-        {
-            Status = Status == TodoItemStatus.Done ? TodoItemStatus.InProgress : TodoItemStatus.Done;
-            SetUpdated();
+            Updated = DateTime.UtcNow.ToString("o");
         }
 
         public void Update(string title, string content, TodoItemStatus status, List<string> tags)

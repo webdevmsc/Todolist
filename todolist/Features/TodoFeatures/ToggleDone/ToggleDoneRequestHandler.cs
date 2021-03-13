@@ -1,6 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using todolist.Models.Extensions.TodoExtensions;
+
 using todolist.Repositories.TodoRepository;
 
 namespace todolist.Features.TodoFeatures.ToggleDone

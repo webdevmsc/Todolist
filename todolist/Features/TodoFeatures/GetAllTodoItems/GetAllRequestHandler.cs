@@ -1,11 +1,12 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using todolist.Repositories.TodoRepository;
 using todolist.Repositories.UserRepository;
 using todolist.Services;
 
-namespace todolist.Features.TodoFeatures.GetAll
+namespace todolist.Features.TodoFeatures.GetAllTodoItems
 {
     public class GetAllRequestHandler : IRequestHandler<GetAllRequest, GetAllResponse>
     {
@@ -24,7 +25,7 @@ namespace todolist.Features.TodoFeatures.GetAll
             var user = _userContextService.CurrentUser;
             var userId = await _userRepository.GetUserIdAsync(user);
             var todos = await _todoRepository.GetAllByFilter(x => x.UserId == userId);
-            return await Task.FromResult(GetAllResponse.GetSuccess(todos, todos.Count));
+            return await Task.FromResult(GetAllResponse.GetSuccess(todos.OrderByDescending(x => x.Added).ToList(), todos.Count));
         }
     }
 }

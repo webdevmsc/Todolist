@@ -37,6 +37,5 @@ namespace todolist.Database
                     v => v.Split(',', StringSplitOptions.None).ToList()).Metadata.SetValueComparer(valueComparer);
             base.OnModelCreating(builder);
         }
-       
     }
 }

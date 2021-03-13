@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace todolist.Features.TodoFeatures.AddNewTodoItem
+namespace todolist.Features.TodoFeatures.DeleteTodoItem
 {
     public class DeleteTodoItemRequest : IRequest<DeleteTodoItemResponse>
     {

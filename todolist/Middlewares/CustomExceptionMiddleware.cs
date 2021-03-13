@@ -1,6 +1,8 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using todolist.Exceptions;
 using todolist.Models.Responses;
@@ -22,25 +24,25 @@ namespace todolist.Middlewares
             {
                 await _next(context);
             }
-            catch (BusinessException ex)
-            {
-                context.Response.Clear();
-                context.Response.StatusCode = (int) HttpStatusCode.BadRequest;
-                context.Request.ContentType = "text/plain";
-                var errorObject = new ResponseBaseModel<bool?>()
-                {
-                    Status = ResponseStatus.Error,
-                    Data = null,
-                    Errors = null,
-                    Message = ex.Message
-                };
-                await context.Response.WriteAsync(Newtonsoft.Json.JsonConvert.SerializeObject(errorObject));
-            }
             catch (AccountException ex)
             {
                 context.Response.Clear();
-                context.Response.StatusCode = (int) HttpStatusCode.BadRequest;
-                context.Request.ContentType = "text/plain";
+                context.Response.StatusCode = (int) HttpStatusCode.OK;
+                context.Request.ContentType = "application/json";
+                var errorObject = new ResponseBaseModel<IdentityError>()
+                {
+                    Status = ResponseStatus.Error,
+                    Data = null,
+                    Errors = ex.Errors,
+                    Message = ex.Message
+                };
+                await context.Response.WriteAsync(Newtonsoft.Json.JsonConvert.SerializeObject(errorObject));
+            }
+            catch (BusinessException ex)
+            {
+                context.Response.Clear();
+                context.Response.StatusCode = (int) HttpStatusCode.OK;
+                context.Request.ContentType = "application/json";
                 var errorObject = new ResponseBaseModel<bool?>()
                 {
                     Status = ResponseStatus.Error,
@@ -50,6 +52,7 @@ namespace todolist.Middlewares
                 };
                 await context.Response.WriteAsync(Newtonsoft.Json.JsonConvert.SerializeObject(errorObject));
             }
+            
         }
     }
 }

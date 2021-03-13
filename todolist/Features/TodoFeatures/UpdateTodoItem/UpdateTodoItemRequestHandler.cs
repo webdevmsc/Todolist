@@ -3,8 +3,6 @@ using System.Threading.Tasks;
 using MediatR;
 using todolist.Models.Todo;
 using todolist.Repositories.TodoRepository;
-using todolist.Repositories.UserRepository;
-using todolist.Services;
 
 namespace todolist.Features.TodoFeatures.UpdateTodoItem
 {

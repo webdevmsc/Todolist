@@ -1,12 +1,11 @@
 ﻿using System;
-using MediatR;
 using todolist.Models.Responses;
 
 namespace todolist.Features.TodoFeatures.ToggleDone
 {
-    public class ToggleDoneResponse : ResponseBaseModel<DateTime>
+    public class ToggleDoneResponse : ResponseBaseModel<string>
     {
-        public static ToggleDoneResponse GetSuccess(DateTime updated) => new ToggleDoneResponse()
+        public static ToggleDoneResponse GetSuccess(string updated) => new ToggleDoneResponse()
         {
             Status = ResponseStatus.Success,
             Data = updated,

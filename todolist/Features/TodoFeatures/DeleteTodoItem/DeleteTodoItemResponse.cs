@@ -1,6 +1,6 @@
 ﻿using todolist.Models.Responses;
 
-namespace todolist.Features.TodoFeatures.AddNewTodoItem
+namespace todolist.Features.TodoFeatures.DeleteTodoItem
 {
     public class DeleteTodoItemResponse : ResponseBaseModel<bool?>
     {
